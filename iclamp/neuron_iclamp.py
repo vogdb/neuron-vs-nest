@@ -26,7 +26,7 @@ duration = common_util.RUN_TIME
 h.tstop = duration
 h.run()
 
-pylab.figure("Neuron iclamp")
+pylab.figure("neuron iclamp")
 pylab.plot(t_vec, v_vec)
 
 pylab.show()

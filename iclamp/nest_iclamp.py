@@ -19,7 +19,7 @@ nest.Simulate(common_util.RUN_TIME)
 status = nest.GetStatus(multimeter)[0]
 events = status['events']
 times = events['times']
-pylab.figure("Nest iclamp")
+pylab.figure("nest iclamp")
 pylab.plot(times, events["V_m"])
 
 pylab.show()
