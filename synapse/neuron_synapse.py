@@ -17,15 +17,14 @@ syn_exc.e = 0.0
 syn_exc.tau = 0.8
 
 generator = h.NetStim()
-generator.number = 1
+generator.number = 1000000 # pool of available spike to emit.
 generator.start = common_util.SPIKES_START
 generator.interval = common_util.SPIKES_INTERVAL
 generator.noise = 0
 
 conn = h.NetCon(generator, syn_exc)
-conn.threshold = 0
 conn.delay = 0
-conn.weight[0] = 0
+conn.weight[0] = 1
 
 v_vec = h.Vector()
 t_vec = h.Vector()

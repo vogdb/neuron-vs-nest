@@ -6,6 +6,8 @@ neuron = nest.Create(
     "hh_psc_alpha", params={
         "C_m": 200.0,  # pF
         "t_ref": 0.0,
+        'tau_syn_ex':2.0,
+        # 'tau_syn_in':1.,
     })
 multimeter = nest.Create(
     'multimeter',
@@ -18,8 +20,16 @@ generator = nest.Create(
     params={"start": common_util.SPIKES_START, "spike_times": spike_times}
 )
 
+nest.CopyModel("static_synapse","excitatory",{"weight":100.,  "delay":0.5})
+# nest.CopyModel("static_synapse","inhibitory",{"weight":200., "delay":0.5})
+
 nest.Connect(multimeter, neuron)
-nest.Connect(generator, neuron, syn_spec={"weight": 1000.0, "model": "static_synapse"})
+# nest.Connect(generator, neuron, syn_spec={
+#     "delay": 0.0,
+#     "weight": 1000.0,
+#     "model": "static_synapse"
+# })
+nest.Connect(generator, neuron, syn_spec="excitatory")
 nest.Simulate(common_util.RUN_TIME)
 
 status = nest.GetStatus(multimeter)[0]
