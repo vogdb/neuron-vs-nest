@@ -1,8 +1,8 @@
-from neuron import h
-from neuron import gui  # VERY IMPORTANT to include 'gui'! Despite the fact that it is unused.
-import pylab
 import numpy
-import common_util
+import pylab
+from neuron import h
+
+from neuron_vs_nest import common_util
 
 soma = h.Section(name='soma')
 soma.L = 200.

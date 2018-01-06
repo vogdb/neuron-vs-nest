@@ -1,6 +1,6 @@
 import nest
 import pylab
-import common_util
+from neuron_vs_nest import common_util
 
 neuron = nest.Create(
     "hh_psc_alpha", params={
