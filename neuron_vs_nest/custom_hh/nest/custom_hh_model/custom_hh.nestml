@@ -6,14 +6,14 @@ neuron custom_hh:
   initial_values:
     V_m mV = -65. mV # Membrane potential
 
-    function alpha_m_init 1/ms = (0.4 * (V_m + 66.)) / (1. - exp(-(V_m + 66.)/5.))/ms
-    function beta_m_init 1/ms = (0.4 * (-(V_m + 32.))) / (1. - exp((V_m + 32.)/5.))/ms
+    function alpha_m_init real = (0.4 * (V_m / mV + 66.)) / (1. - exp(-(V_m / mV + 66.)/5.))
+    function beta_m_init real = (0.4 * (-(V_m / mV + 32.))) / (1. - exp((V_m / mV + 32.)/5.))
     Act_m real =  alpha_m_init / ( alpha_m_init + beta_m_init )
 
-    function h_inf_init real = 1. / (1. + exp((V_m + 65.)/7.))
+    function h_inf_init real = 1. / (1. + exp((V_m / mV + 65.)/7.))
     Act_h real = h_inf_init
 
-    function n_inf_init real = 1. / (1. + exp(-(V_m + 38.)/15.))
+    function n_inf_init real = 1. / (1. + exp(-(V_m / mV + 38.)/15.))
     Inact_n real = n_inf_init
   end
 
@@ -32,19 +32,19 @@ neuron custom_hh:
     V_m' =( -( I_Na + I_K + I_L ) + currents + I_e + I_syn_inh + I_syn_exc ) / C_m
 
 
-    function n_inf real = 1. / (1. + exp(-(V_m + 38.)/15.))
-    function n_tau ms = (5. * ms) / (exp((V_m + 50.)/40.) + exp(-(V_m + 50.)/50.))
+    function n_inf real = 1. / (1. + exp(-(V_m / mV + 38.)/15.))
+    function n_tau ms = (5. * ms) / (exp((V_m / mV + 50.)/40.) + exp(-(V_m /mV + 50.)/50.))
 	Inact_n' = (n_inf - Inact_n) / n_tau
 
-    function alpha_m 1/ms = (0.4 * (V_m + 66.)) / (1. - exp(-(V_m + 66.)/5.))
-    function beta_m 1/ms = (0.4 * (-(V_m + 32.))) / (1. - exp((V_m + 32.)/5.))
-	# Act_m' = alpha_m * (1. - Act_m) - beta_m * Act_m
-	function m_inf real = alpha_m / (alpha_m + beta_m)
-	function m_tau ms = 1. / (alpha_m + beta_m)
-	Act_m' = (m_inf - Act_m) / m_tau
+    function alpha_m real = (0.4 * (V_m / mV + 66.)) / (1. - exp(-(V_m / mV + 66.)/5.))
+    function beta_m real = (0.4 * (-(V_m / mV + 32.))) / (1. - exp((V_m / mV + 32.)/5.))
+	Act_m' = (alpha_m * (1. - Act_m) - beta_m * Act_m) / ms
+	# function m_inf real = alpha_m / (alpha_m + beta_m)
+	# function m_tau ms = 1. / (alpha_m + beta_m)
+	# Act_m' = (m_inf - Act_m) / m_tau
 
-    function h_inf real = 1. / (1. + exp((V_m + 65.)/7.))
-    function h_tau ms = (30. * ms) / (exp((V_m + 60.)/15.) + exp(-(V_m + 60.)/16.))
+    function h_inf real = 1. / (1. + exp((V_m / mV + 65.)/7.))
+    function h_tau ms = (30. * ms) / (exp((V_m / mV + 60.)/15.) + exp(-(V_m / mV + 60.)/16.))
 	Act_h' = (h_inf - Act_h) / h_tau
   end
 
