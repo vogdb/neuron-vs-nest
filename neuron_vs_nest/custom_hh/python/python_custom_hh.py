@@ -2,6 +2,7 @@ import scipy as sp
 import pylab as plt
 from scipy.integrate import odeint
 import numpy
+from neuron_vs_nest import common_util
 
 # Constants
 C_m  = 100.0 # membrane capacitance, in pF
@@ -31,7 +32,7 @@ def I_L(V):     return g_L             * (V - E_L)
 def I_inj(t): return 700.0
 
 # The time to integrate over
-t = sp.arange(0.0, 150.0, 0.1)
+t = sp.arange(0.0, common_util.RUN_TIME, 0.1)
 
 # Integrate!
 def dALLdt(X, t):
