@@ -3,12 +3,12 @@ import nest
 from neuron_vs_nest import common_util
 
 nest.Install("custom_hh_model")
-# nest.SetKernelStatus(dict(resolution=0.5))
+nest.SetKernelStatus(dict(resolution=0.1))
 
 neuron = nest.Create(
     'custom_hh', params={
         "I_e": 700.0,  # pA
-        "C_m": 200.0,  # pF
+        "C_m": 1000.0,  # pF
         "t_ref": 0.0,
     }
 )

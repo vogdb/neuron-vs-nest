@@ -4,7 +4,7 @@ neuron custom_hh:
   end
 
   initial_values:
-    V_m mV = -65. mV # Membrane potential
+    V_m mV = -70. mV # Membrane potential
 
     function alpha_m_init real = (0.4 * (V_m / mV + 66.)) / (1. - exp(-(V_m / mV + 66.)/5.))
     function beta_m_init real = (0.4 * (-(V_m / mV + 32.))) / (1. - exp((V_m / mV + 32.)/5.))
@@ -33,18 +33,15 @@ neuron custom_hh:
 
 
     function n_inf real = 1. / (1. + exp(-(V_m / mV + 38.)/15.))
-    function n_tau ms = (5. * ms) / (exp((V_m / mV + 50.)/40.) + exp(-(V_m /mV + 50.)/50.))
+    function n_tau ms = 5. / (exp((V_m / mV + 50.)/40.) + exp(-(V_m / mV + 50.)/50.))
 	Inact_n' = (n_inf - Inact_n) / n_tau
 
     function alpha_m real = (0.4 * (V_m / mV + 66.)) / (1. - exp(-(V_m / mV + 66.)/5.))
     function beta_m real = (0.4 * (-(V_m / mV + 32.))) / (1. - exp((V_m / mV + 32.)/5.))
 	Act_m' = (alpha_m * (1. - Act_m) - beta_m * Act_m) / ms
-	# function m_inf real = alpha_m / (alpha_m + beta_m)
-	# function m_tau ms = 1. / (alpha_m + beta_m)
-	# Act_m' = (m_inf - Act_m) / m_tau
 
     function h_inf real = 1. / (1. + exp((V_m / mV + 65.)/7.))
-    function h_tau ms = (30. * ms) / (exp((V_m / mV + 60.)/15.) + exp(-(V_m / mV + 60.)/16.))
+    function h_tau ms = 30. / (exp((V_m / mV + 60.)/15.) + exp(-(V_m / mV + 60.)/16.))
 	Act_h' = (h_inf - Act_h) / h_tau
   end
 
@@ -54,7 +51,7 @@ neuron custom_hh:
     g_Na nS = 5000.0nS       # Sodium peak conductance
     g_L nS = 200.0nS         # Leak conductance
     g_K_rect nS = 30000.0nS  # Delayed Rectifier Potassium peak conductance
-	C_m pF = 200.0pF         # Membrane capacitance
+	C_m pF = 100.0pF         # Membrane capacitance
 	E_Na mV = 50.0mV
 	E_K mV = -80.0mV
 	E_L	mV = -70.0mV
