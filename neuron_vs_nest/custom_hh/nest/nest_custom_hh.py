@@ -14,7 +14,7 @@ neuron = nest.Create(
 )
 multimeter = nest.Create(
     'multimeter',
-    params={"record_from": ["V_m", "Act_m", "Act_h", "Inact_n"], "withtime": True}
+    params={"record_from": ["V_m", "Act_m", "Act_h", "Inact_n"], "withtime": True, "interval": 0.1}
 )
 
 nest.Connect(multimeter, neuron)
