@@ -1,0 +1,43 @@
+{
+  "status": "success", 
+  "initial_values": [
+    {
+      "I_syn_in__1": "e/tau_syn_in"
+    }, 
+    {
+      "I_syn_in": "0"
+    }, 
+    {
+      "I_syn_ex__1": "e/tau_syn_ex"
+    }, 
+    {
+      "I_syn_ex": "0"
+    }
+  ], 
+  "solver": "numeric", 
+  "shape_state_odes": [
+    {
+      "I_syn_in": "I_syn_in__1"
+    }, 
+    {
+      "I_syn_in__1": "-1/tau_syn_in**2 * I_syn_in + -2/tau_syn_in * I_syn_in__1"
+    }, 
+    {
+      "I_syn_ex": "I_syn_ex__1"
+    }, 
+    {
+      "I_syn_ex__1": "-1/tau_syn_ex**2 * I_syn_ex + -2/tau_syn_ex * I_syn_ex__1"
+    }
+  ], 
+  "ode_var_factor": null, 
+  "const_input": null, 
+  "propagator_elements": null, 
+  "updates_to_shape_state_variables": [], 
+  "shape_state_variables": [
+    "I_syn_in__1", 
+    "I_syn_in", 
+    "I_syn_ex__1", 
+    "I_syn_ex"
+  ], 
+  "ode_var_update_instructions": null
+}

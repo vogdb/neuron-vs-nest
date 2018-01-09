@@ -1,0 +1,45 @@
+Description:
+
+
+
+
+Parameters:
+
+The following parameters can be set in the status dictionary. 
+t_ref	 [ms   ] Refractory period 
+g_Na	 [1 / GOhm] Sodium peak conductance 
+g_L	 [1 / GOhm] Leak conductance 
+g_K_rect   [1 / GOhm] Delayed Rectifier Potassium peak conductance 
+C_m	 [pF   ] Membrane capacitance 
+tau_syn_ex [ms   ] Rise time of the excitatory synaptic alpha function i 
+tau_syn_in [ms   ] Rise time of the inhibitory synaptic alpha function 
+I_e	 [pA   ] Constant Current in pA 
+State variables: 
+These variables can be also set in the status dictionary. 
+r	 [integer] number of steps in the current refractory phase 
+V_m	 [mV   ] Membrane potential
+
+
+Require:
+
+HAVE_GSL
+
+
+Receives:
+
+Spike, Current,  DataLoggingRequest
+
+
+Sends:
+
+nest::SpikeEvent
+
+
+References:
+
+Empty
+
+
+Source:
+
+/home/vogdb/workspace/xxx/neuron_vs_nest/neuron_vs_nest/custom_hh/nest/nestml_build/custom_hh.h
