@@ -9,7 +9,7 @@ The following parameters can be set in the status dictionary.
 t_ref	 [ms   ] Refractory period 
 g_Na	 [1 / GOhm] Sodium peak conductance 
 g_L	 [1 / GOhm] Leak conductance 
-g_K_rect   [1 / GOhm] Delayed Rectifier Potassium peak conductance 
+g_K	 [1 / GOhm] Potassium peak conductance 
 C_m	 [pF   ] Membrane capacitance 
 tau_syn_ex [ms   ] Rise time of the excitatory synaptic alpha function i 
 tau_syn_in [ms   ] Rise time of the inhibitory synaptic alpha function 

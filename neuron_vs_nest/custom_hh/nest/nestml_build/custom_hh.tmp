@@ -20,7 +20,7 @@ neuron custom_hh:
     t_ref ms = 2.0*ms # Refractory period
     g_Na 1 / GOhm = 5000.0*nS # Sodium peak conductance
     g_L 1 / GOhm = 200.0*nS # Leak conductance
-    g_K_rect 1 / GOhm = 30000.0*nS # Delayed Rectifier Potassium peak conductance
+    g_K 1 / GOhm = 30000.0*nS # Potassium peak conductance
     C_m pF = 100.0*pF # Membrane capacitance
     E_Na mV = 50.0*mV
     E_K mV = -80.0*mV
@@ -56,7 +56,7 @@ neuron custom_hh:
     function I_syn_exc pA = convolve(I_syn_ex, spikeExc)
     function I_syn_inh pA = convolve(I_syn_in, spikeInh)
     function I_Na pA = g_Na*Act_m*Act_m*Act_m*Act_h*(V_m-E_Na)
-    function I_K pA = g_K_rect*Inact_n*Inact_n*Inact_n*Inact_n*(V_m-E_K)
+    function I_K pA = g_K*Inact_n*Inact_n*Inact_n*Inact_n*(V_m-E_K)
     function I_L pA = g_L*(V_m-E_L)
     function n_inf real = 1./(1.+exp(-(V_m/mV+38.)/15.))
     function n_tau ms = 5./(exp((V_m/mV+50.)/40.)+exp(-(V_m/mV+50.)/50.))

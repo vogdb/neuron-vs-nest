@@ -26,7 +26,7 @@ neuron custom_hh:
 
 
     function I_Na  pA = g_Na * Act_m * Act_m * Act_m * Act_h * ( V_m - E_Na )
-    function I_K   pA  = g_K_rect * Inact_n * Inact_n * Inact_n * Inact_n * ( V_m - E_K )
+    function I_K   pA  = g_K * Inact_n * Inact_n * Inact_n * Inact_n * ( V_m - E_K )
     function I_L   pA = g_L * ( V_m - E_L )
 
     V_m' =( -( I_Na + I_K + I_L ) + currents + I_e + I_syn_inh + I_syn_exc ) / C_m
@@ -50,7 +50,7 @@ neuron custom_hh:
 
     g_Na nS = 5000.0nS       # Sodium peak conductance
     g_L nS = 200.0nS         # Leak conductance
-    g_K_rect nS = 30000.0nS  # Delayed Rectifier Potassium peak conductance
+    g_K nS = 30000.0nS       # Potassium peak conductance
 	C_m pF = 100.0pF         # Membrane capacitance
 	E_Na mV = 50.0mV
 	E_K mV = -80.0mV

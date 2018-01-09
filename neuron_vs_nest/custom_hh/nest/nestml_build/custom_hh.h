@@ -66,7 +66,7 @@ Parameters:
   t_ref      [ms   ] Refractory period
   g_Na       [1 / GOhm] Sodium peak conductance
   g_L        [1 / GOhm] Leak conductance
-  g_K_rect   [1 / GOhm] Delayed Rectifier Potassium peak conductance
+  g_K        [1 / GOhm] Potassium peak conductance
   C_m        [pF   ] Membrane capacitance
   tau_syn_ex [ms   ] Rise time of the excitatory synaptic alpha function i
   tau_syn_in [ms   ] Rise time of the inhibitory synaptic alpha function
@@ -184,7 +184,7 @@ double g_Na; //! Sodium peak conductance
       
 double g_L; //! Leak conductance
       
-double g_K_rect; //! Delayed Rectifier Potassium peak conductance
+double g_K; //! Potassium peak conductance
       
 double C_m; //! Membrane capacitance
       
@@ -524,13 +524,13 @@ nest::RingBuffer currents;
 
     
 
-  /** returns Delayed Rectifier Potassium peak conductance in 1 / GOhm */
-  inline double get_g_K_rect() const {
-    return P_. g_K_rect;
+  /** returns Potassium peak conductance in 1 / GOhm */
+  inline double get_g_K() const {
+    return P_. g_K;
   }
 
-  inline void set_g_K_rect(const double __v) {
-    P_. g_K_rect = __v;
+  inline void set_g_K(const double __v) {
+    P_. g_K = __v;
   }
 
     
@@ -656,7 +656,7 @@ nest::RingBuffer currents;
 
   /**  */
   inline double get_I_K() const {
-    return P_.g_K_rect*S_.ode_state[State_::Inact_n]*S_.ode_state[State_::Inact_n]*S_.ode_state[State_::Inact_n]*S_.ode_state[State_::Inact_n]*(S_.ode_state[State_::V_m]-P_.E_K);
+    return P_.g_K*S_.ode_state[State_::Inact_n]*S_.ode_state[State_::Inact_n]*S_.ode_state[State_::Inact_n]*S_.ode_state[State_::Inact_n]*(S_.ode_state[State_::V_m]-P_.E_K);
   }
 
       
@@ -798,7 +798,7 @@ void custom_hh::get_status(DictionaryDatum &__d) const
   def< double >(__d, "g_L", get_g_L());
 
   
-  def< double >(__d, "g_K_rect", get_g_K_rect());
+  def< double >(__d, "g_K", get_g_K());
 
   
   def< double >(__d, "C_m", get_C_m());
@@ -851,8 +851,8 @@ void custom_hh::set_status(const DictionaryDatum &__d)
   updateValue<double>(__d, "g_L", tmp_g_L);
 
   
-  double tmp_g_K_rect = get_g_K_rect();
-  updateValue<double>(__d, "g_K_rect", tmp_g_K_rect);
+  double tmp_g_K = get_g_K();
+  updateValue<double>(__d, "g_K", tmp_g_K);
 
   
   double tmp_C_m = get_C_m();
@@ -905,7 +905,7 @@ void custom_hh::set_status(const DictionaryDatum &__d)
   set_g_L(tmp_g_L);
 
     
-  set_g_K_rect(tmp_g_K_rect);
+  set_g_K(tmp_g_K);
 
     
   set_C_m(tmp_C_m);

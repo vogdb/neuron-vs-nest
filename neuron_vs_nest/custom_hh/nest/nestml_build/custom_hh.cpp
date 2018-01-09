@@ -268,7 +268,7 @@ custom_hh::custom_hh():Archiving_Node(), P_(), S_(), B_(*this)
     P_.g_L = 200.0*1.0; // as 1 / GOhm
 
     
-    P_.g_K_rect = 30000.0*1.0; // as 1 / GOhm
+    P_.g_K = 30000.0*1.0; // as 1 / GOhm
 
     
     P_.C_m = 100.0*1.0; // as pF
@@ -341,7 +341,7 @@ custom_hh::custom_hh(const custom_hh& __n): Archiving_Node(), P_(__n.P_), S_(__n
     P_.t_ref = __n.P_.t_ref;
     P_.g_Na = __n.P_.g_Na;
     P_.g_L = __n.P_.g_L;
-    P_.g_K_rect = __n.P_.g_K_rect;
+    P_.g_K = __n.P_.g_K;
     P_.C_m = __n.P_.C_m;
     P_.E_Na = __n.P_.E_Na;
     P_.E_K = __n.P_.E_K;
@@ -392,7 +392,7 @@ custom_hh_dynamics( double, const double ode_state[], double f[], void* pnode )
     double I_syn_exc = ode_state[State_::I_syn_ex];
     double I_syn_inh = ode_state[State_::I_syn_in];
     double I_Na = node.get_g_Na()*ode_state[State_::Act_m]*ode_state[State_::Act_m]*ode_state[State_::Act_m]*ode_state[State_::Act_h]*(ode_state[State_::V_m]-node.get_E_Na());
-    double I_K = node.get_g_K_rect()*ode_state[State_::Inact_n]*ode_state[State_::Inact_n]*ode_state[State_::Inact_n]*ode_state[State_::Inact_n]*(ode_state[State_::V_m]-node.get_E_K());
+    double I_K = node.get_g_K()*ode_state[State_::Inact_n]*ode_state[State_::Inact_n]*ode_state[State_::Inact_n]*ode_state[State_::Inact_n]*(ode_state[State_::V_m]-node.get_E_K());
     double I_L = node.get_g_L()*(ode_state[State_::V_m]-node.get_E_L());
     double n_inf = 1./(1.+std::exp(-(ode_state[State_::V_m]/1.0+38.)/15.));
     double n_tau = 5./(std::exp((ode_state[State_::V_m]/1.0+50.)/40.)+std::exp(-(ode_state[State_::V_m]/1.0+50.)/50.));
