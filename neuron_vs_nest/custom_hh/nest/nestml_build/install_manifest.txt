@@ -1,8 +1,0 @@
-/opt/nest/nest-2.12.0/lib/nest/custom_hh_model.so
-/opt/nest/nest-2.12.0/lib/nest/libcustom_hh_model.so
-/opt/nest/nest-2.12.0/include/custom_hh_model.h
-/opt/nest/nest-2.12.0/share/nest/sli/custom_hh_model-init.sli
-/opt/nest/nest-2.12.0/share/doc/nest/help/cc/custom_hh..html
-/opt/nest/nest-2.12.0/share/doc/nest/help/cc/custom_hh..hlp
-/opt/nest/nest-2.12.0/share/doc/nest/help/helpindex.hlp
-/opt/nest/nest-2.12.0/share/doc/nest/help/helpindex.html
