@@ -1,11 +1,10 @@
 import scipy as sp
-import pylab as plt
+import pylab as pylab
 from scipy.integrate import odeint
-import numpy
 from neuron_vs_nest import common_util
 
 # Constants
-C_m  = 100.0 # membrane capacitance, in pF
+C_m  = 200.0 # membrane capacitance, in pF
 g_Na = 5000.0 # maximum conductances, in nS
 g_K  = 30000.0
 g_L  = 200
@@ -44,7 +43,7 @@ def dALLdt(X, t):
     dndt = (n_inf(V) - n) / n_tau(V)
     return dVdt, dmdt, dhdt, dndt
 
-V_Init = -70
+V_Init = -65
 X = odeint(dALLdt, [V_Init, alpha_m(V_Init)/(alpha_m(V_Init) + beta_m(V_Init)), h_inf(V_Init), n_inf(V_Init)], t)
 V = X[:,0]
 m = X[:,1]
@@ -54,31 +53,15 @@ ina = I_Na(V,m,h)
 ik = I_K(V, n)
 il = I_L(V)
 
-plt.figure()
 
-plt.subplot(4,1,1)
-plt.title('Hodgkin-Huxley Neuron')
-plt.plot(t, V, 'k')
-plt.ylabel('V (mV)')
+pylab.figure("python V_m")
+pylab.plot(t, V)
 
-plt.subplot(4,1,2)
-plt.plot(t, ina, 'c', label='$I_{Na}$')
-plt.plot(t, ik, 'y', label='$I_{K}$')
-plt.plot(t, il, 'm', label='$I_{L}$')
-plt.ylabel('Current')
-plt.legend()
+pylab.figure("python m")
+pylab.plot(t, m)
+pylab.figure("python n")
+pylab.plot(t, n)
+pylab.figure("python h")
+pylab.plot(t, h)
 
-plt.subplot(4,1,3)
-plt.plot(t, m, 'r', label='m')
-plt.plot(t, h, 'g', label='h')
-plt.plot(t, n, 'b', label='n')
-plt.ylabel('Gating Value')
-plt.legend()
-
-plt.subplot(4,1,4)
-plt.plot(numpy.array(t), [I_inj(t)] * len(t), 'k')
-plt.xlabel('t (ms)')
-plt.ylabel('$I_{inj}$ pA')
-plt.ylim(-1, 1000)
-
-plt.show()
+pylab.show()
