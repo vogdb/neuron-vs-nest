@@ -1,3 +1,4 @@
+import numpy
 import scipy as sp
 import pylab as pylab
 from scipy.integrate import odeint
@@ -90,41 +91,34 @@ ical = I_CaL(V,p, E_Ca)
 icak = I_CaK(V,Ca_in)
 
 
-pylab.figure("python iclamp V_m")
-pylab.plot(t, V)
+pylab.figure()
+pylab.title('Hodgkin-Huxley Neuron')
 
 pylab.subplot(4,1,1)
-pylab.title('Hodgkin-Huxley Neuron')
-pylab.plot(t, V, 'k')
 pylab.ylabel('V (mV)')
-# pylab.plot(t, ican, 'k', label='icaN')
-# pylab.plot(t, icak, 'k', label='icaK')
+pylab.plot(t, V, label="V_m")
 pylab.legend()
 
 pylab.subplot(4,1,2)
-# pylab.plot(t, ical, 'c', label='icaL')
-# pylab.ylabel('Ca_in')
-pylab.plot(t, Ca_in, 'c', label='Ca_in')
-# pylab.plot(t, ina, 'c', label='$I_{Na}$')
-# pylab.plot(t, ik, 'y', label='$I_{K}$')
-# pylab.plot(t, il, 'm', label='$I_{L}$')
-# pylab.ylabel('Current')
+pylab.ylabel('Ca Concentration')
+pylab.yticks(numpy.arange(0.0001, 0.0010, 0.0002))
+pylab.plot(t, Ca_in, label='Ca_in')
 pylab.legend()
 
 pylab.subplot(4,1,3)
-pylab.plot(t, p, 'r', label='p')
-pylab.plot(t, mc, 'g', label='mc')
-pylab.plot(t, hc, 'b', label='hc')
-pylab.ylabel('Gating Value')
+pylab.ylim(0, 1)
+pylab.ylabel('m, n, h particles')
+pylab.plot(t, m, 'r', label='m')
+pylab.plot(t, n, 'g', label='n')
+pylab.plot(t, h, 'b', label='h')
 pylab.legend()
 
 pylab.subplot(4,1,4)
-# pylab.plot(t, E_Ca, 'k')
-# pylab.xlabel('t (ms)')
-# pylab.ylabel('E_Ca')
-# pylab.plot(t, [I_inj(t)] * len(t), 'k')
-# pylab.xlabel('t (ms)')
-# pylab.ylabel('$I_{inj}$ pA')
-# pylab.ylim(-1, 1000)
+pylab.ylim(0, 1)
+pylab.ylabel('p, mc, hc particles')
+pylab.plot(t, p, 'r', label='p')
+pylab.plot(t, mc, 'g', label='mc')
+pylab.plot(t, hc, 'b', label='hc')
+pylab.legend()
 
 pylab.show()
