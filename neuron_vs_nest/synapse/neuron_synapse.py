@@ -1,6 +1,7 @@
 import numpy
 import pylab
 from neuron import h
+from neuron import gui  # VERY IMPORTANT to include 'gui'! Despite the fact that it is unused.
 
 from neuron_vs_nest import common_util
 
